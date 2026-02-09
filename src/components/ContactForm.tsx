@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react'
 import { useState } from 'react';
 import {  Send } from 'lucide-react';
@@ -5,9 +7,11 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/hooks/use-toast';
 
 const ContactForm = () => {
-   const [formData, setFormData] = useState<{
+  const { toast } = useToast();
+  const [formData, setFormData] = useState<{
     name: string;
     email: string;
     subject: string;

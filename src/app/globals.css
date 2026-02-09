@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Cinematic Hollywood Portfolio Design System
+All colors MUST be HSL. Luxurious, dramatic, and professional.
+*/
+
+@layer base {
+  :root {
+    /* Core cinematic palette */
+    --background: 220 15% 8%;
+    --foreground: 45 100% 95%;
+
+    --card: 220 20% 12%;
+    --card-foreground: 45 100% 95%;
+
+    --popover: 220 25% 10%;
+    --popover-foreground: 45 100% 95%;
+
+    /* Golden accent system */
+    --primary: 45 100% 60%;
+    --primary-foreground: 220 25% 8%;
+    --primary-glow: 45 100% 75%;
+
+    /* Rich secondary palette */
+    --secondary: 260 20% 25%;
+    --secondary-foreground: 45 100% 95%;
+
+    --muted: 220 15% 20%;
+    --muted-foreground: 220 10% 60%;
+
+    --accent: 280 100% 70%;
+    --accent-foreground: 220 25% 8%;
+
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 45 100% 95%;
+
+    --border: 220 20% 20%;
+    --input: 220 25% 15%;
+    --ring: 45 100% 60%;
+
+    --radius: 0.75rem;
+
+    /* Cinematic gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(220 25% 8%) 0%, hsl(260 30% 15%) 50%, hsl(45 100% 20%) 100%);
+    --gradient-golden: linear-gradient(135deg, hsl(45 100% 50%) 0%, hsl(30 100% 60%) 50%, hsl(15 100% 65%) 100%);
+    --gradient-purple: linear-gradient(135deg, hsl(280 100% 30%) 0%, hsl(260 100% 50%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(220 20% 12%) 0%, hsl(220 25% 15%) 100%);
+    
+    /* Cinematic shadows */
+    --shadow-dramatic: 0 25px 50px -12px hsl(220 100% 5% / 0.8);
+    --shadow-golden: 0 10px 30px -10px hsl(45 100% 60% / 0.3);
+    --shadow-purple: 0 10px 30px -10px hsl(280 100% 50% / 0.3);
+    
+    /* Animation variables */
+    --transition-cinematic: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  /* Light mode variant - more elegant for daytime viewing */
+  .light {
+    --background: 220 20% 95%;
+    --foreground: 220 25% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 8%;
+    --primary: 45 100% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 15% 85%;
+    --secondary-foreground: 220 25% 8%;
+    --muted: 220 15% 88%;
+    --muted-foreground: 220 10% 40%;
+    --border: 220 20% 85%;
+    --input: 220 15% 90%;
+    --gradient-hero: linear-gradient(135deg, hsl(220 20% 95%) 0%, hsl(45 100% 95%) 50%, hsl(45 100% 85%) 100%);
+    --shadow-dramatic: 0 25px 50px -12px hsl(220 100% 20% / 0.2);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground overflow-x-hidden;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Hero section styles */
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+  
+  .golden-gradient {
+    background: var(--gradient-golden);
+  }
+  
+  .purple-gradient {
+    background: var(--gradient-purple);
+  }
+  
+  .card-gradient {
+    background: var(--gradient-card);
+  }
+  
+  /* Cinematic animations */
+  .cinematic-enter {
+    animation: cinematic-fade-in 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+  
+  .stagger-children > * {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: stagger-fade-in 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+  
+  .stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+  .stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+  .stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+  .stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+  .stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+  
+  /* Interactive elements */
+  .hover-glow {
+    transition: var(--transition-cinematic);
+  }
+  
+  .hover-glow:hover {
+    box-shadow: var(--shadow-golden);
+    transform: translateY(-2px) scale(1.02);
+  }
+  
+  .hover-lift {
+    transition: var(--transition-smooth);
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-dramatic);
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: var(--gradient-golden);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@keyframes cinematic-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes stagger-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}

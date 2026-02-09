@@ -1,12 +1,15 @@
+'use client';
+
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,7 +33,7 @@ const Navigation = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 hover-glow">
+          <Link href="/" className="flex items-center space-x-2 hover-glow">
             <Star className="h-8 w-8 text-primary" />
             <span className="text-2xl font-bold text-gradient">SUNIT</span>
           </Link>
@@ -40,12 +43,12 @@ const Navigation = () => {
             {navItems.map((item) => (
               <Link
                 key={item.path}
-                to={item.path}
-                className={`relative text-lg font-medium transition-colors duration-300 hover:text-primary ${location.pathname === item.path ? 'text-primary' : 'text-foreground'
+                href={item.path}
+                className={`relative text-lg font-medium transition-colors duration-300 hover:text-primary ${pathname === item.path ? 'text-primary' : 'text-foreground'
                   }`}
               >
                 {item.name}
-                {location.pathname === item.path && (
+                {pathname === item.path && (
                   <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-golden rounded-full" />
                 )}
               </Link>
@@ -70,8 +73,8 @@ const Navigation = () => {
               {navItems.map((item) => (
                 <Link
                   key={item.path}
-                  to={item.path}
-                  className={`text-lg font-medium transition-colors duration-300 hover:text-primary ${location.pathname === item.path ? 'text-primary' : 'text-foreground'
+                  href={item.path}
+                  className={`text-lg font-medium transition-colors duration-300 hover:text-primary ${pathname === item.path ? 'text-primary' : 'text-foreground'
                     }`}
                   onClick={() => setIsMenuOpen(false)}
                 >

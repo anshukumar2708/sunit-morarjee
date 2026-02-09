@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Mail, Phone, MapPin, Instagram, Twitter, Linkedin } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
