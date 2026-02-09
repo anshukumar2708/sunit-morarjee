@@ -145,7 +145,7 @@ const HomePage = () => {
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 container mx-auto px-6 text-center lg:text-left">
+        <div className="relative z-10 container mx-auto px-6 text-center lg:text-left md:pt-20">
           <div className="max-w-3xl cinematic-enter">
             <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight">
               <span className="text-gradient animate-float">SUNIT MORARJEE</span>
