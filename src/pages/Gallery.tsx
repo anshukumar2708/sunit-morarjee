@@ -1,7 +1,11 @@
 import { useState } from 'react';
-import { X, Heart, Share, Download } from 'lucide-react';
+import { X, Heart, Share, Download, Send, Photo, Camera } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/hooks/use-toast';
 import heroPortrait from '@/assets/hero-portrait.jpg';
 import portraitGallery1 from '@/assets/portrait-gallery-1.jpg';
 import portraitGallery2 from '@/assets/portrait-gallery-2.jpg';
@@ -11,6 +15,29 @@ import behindScenes from '@/assets/behind-scenes.jpg';
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [activeCategory, setActiveCategory] = useState('all');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const { toast } = useToast();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Message sent successfully!",
+      description: "Thank you for your inquiry. We'll get back to you soon.",
+    });
+    setFormData({ name: '', email: '', subject: '', message: '' });
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
 
   const images = [
     {
@@ -178,6 +205,141 @@ const Gallery = () => {
             </div>
           </div>
         )}
+
+        {/* Photography Info Section */}
+        <section className="py-20 bg-background/95 rounded-2xl -mx-6 px-6 mt-20 mb-20">
+          <div className="grid md:grid-cols-2 gap-12">
+            <div>
+              <h2 className="text-3xl font-bold mb-6 text-gradient">ABOUT THE PHOTOGRAPHY</h2>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                Our gallery showcases professional photography from various film sets, award ceremonies, and promotional shoots. Each image captures a unique moment from SUNIT MORARJEE's illustrious Bollywood career.
+              </p>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                From red carpet appearances to intimate behind-the-scenes moments, these photographs tell the story of dedication, artistry, and passion that goes into every film project.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-center gap-3">
+                  <Camera className="h-5 w-5 text-primary" />
+                  <span>Professional Studio Photography</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Photo className="h-5 w-5 text-primary" />
+                  <span>On-Set Behind the Scenes</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Camera className="h-5 w-5 text-primary" />
+                  <span>Red Carpet & Event Coverage</span>
+                </li>
+              </ul>
+            </div>
+            <Card className="bg-gradient-card border-0 hover-lift">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold mb-6">High Resolution Downloads</h3>
+                <p className="text-muted-foreground mb-6">
+                  Looking for high-resolution images for press, media, or promotional use? We offer professional-quality downloads and licensing options.
+                </p>
+                <Button className="w-full bg-gradient-golden hover:bg-gradient-golden hover-glow" size="lg">
+                  Request Media Kit & License
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* Media Inquiry Form */}
+        <section className="py-16">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">
+              MEDIA & PHOTO INQUIRIES
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Need photos for press releases, articles, or promotional material? Contact us for licensing and high-resolution image requests.
+            </p>
+          </div>
+
+          <div className="max-w-2xl mx-auto">
+            <Card className="bg-gradient-card border-0 shadow-dramatic">
+              <CardHeader>
+                <CardTitle className="text-2xl font-bold">Photo License Request</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium mb-2">
+                        Your Name
+                      </label>
+                      <Input
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        className="bg-background/50 border-border focus:border-primary"
+                        placeholder="Full name"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium mb-2">
+                        Email Address
+                      </label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className="bg-background/50 border-border focus:border-primary"
+                        placeholder="your.email@example.com"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="subject" className="block text-sm font-medium mb-2">
+                      Purpose of Request
+                    </label>
+                    <Input
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      required
+                      className="bg-background/50 border-border focus:border-primary"
+                      placeholder="Press, Commercial, Educational, etc."
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium mb-2">
+                      Details
+                    </label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      rows={5}
+                      className="bg-background/50 border-border focus:border-primary resize-none"
+                      placeholder="Which photos are you interested in? How will they be used? Any specific resolution or format needed?"
+                    />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    className="w-full bg-gradient-golden hover:bg-gradient-golden hover-glow"
+                    size="lg"
+                  >
+                    <Send className="h-5 w-5 mr-2" />
+                    Submit Request
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
       </div>
     </div>
   );

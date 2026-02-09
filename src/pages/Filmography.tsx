@@ -1,9 +1,50 @@
-import { Calendar, Star, Play, Award } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
+import { useState } from 'react';
+import { Calendar, Star, Play, Award, Send, TrendingUp, Users, Globe, DollarSign } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/hooks/use-toast';
 
 const Filmography = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const { toast } = useToast();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Message sent successfully!",
+      description: "Thank you for your inquiry. We'll review it shortly.",
+    });
+    setFormData({ name: '', email: '', subject: '', message: '' });
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const filmStats = [
+    { icon: TrendingUp, label: 'Blockbuster Hits', value: '15+' },
+    { icon: DollarSign, label: 'Films Crossed Crore', value: '18+' },
+    { icon: Globe, label: 'International Releases', value: '20+' },
+    { icon: Award, label: 'Award-winning Performances', value: '12+' }
+  ];
+
+  const topCollaborators = [
+    { name: 'Sanjay Leela Bhansali', films: 3, specialty: 'Epic Drama' },
+    { name: 'Rajkumar Hirani', films: 2, specialty: 'Comedy Drama' },
+    { name: 'Anurag Kashyap', films: 2, specialty: 'Thriller' }
+  ];
+
   const films = [
     {
       title: 'Midnight Dreams',
@@ -146,16 +187,53 @@ const Filmography = () => {
         {/* Hero Section */}
         <div className="text-center mb-16 cinematic-enter">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 text-gradient">
-            Filmography
+            FILMOGRAPHY
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             A collection of stories brought to life through passion, dedication, and artistic collaboration.
           </p>
         </div>
 
+        {/* Film Statistics */}
+        <section className="py-16 bg-background/95 rounded-2xl -mx-6 px-6 mb-20">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {filmStats.map((stat, index) => {
+              const IconComponent = stat.icon;
+              return (
+                <div key={index} className="text-center">
+                  <div className="flex justify-center mb-4">
+                    <IconComponent className="h-10 w-10 text-primary" />
+                  </div>
+                  <div className="text-4xl font-bold text-gradient mb-2">{stat.value}</div>
+                  <div className="text-muted-foreground">{stat.label}</div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* Top Collaborators */}
+        <section className="mb-20">
+          <h2 className="text-3xl font-bold mb-12 text-center">Top Collaborations</h2>
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            {topCollaborators.map((collaborator, index) => (
+              <Card key={index} className="bg-gradient-card border-0 hover-lift">
+                <CardContent className="p-8 text-center">
+                  <div className="w-12 h-12 bg-primary rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <Users className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-2">{collaborator.name}</h3>
+                  <p className="text-primary font-semibold mb-2">{collaborator.films} Films</p>
+                  <Badge className="bg-gradient-purple">{collaborator.specialty}</Badge>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
         {/* Released Films */}
         <section className="mb-20">
-          <h2 className="text-3xl font-bold mb-8">Recent Works</h2>
+          <h2 className="text-3xl font-bold mb-8">RECENT WORKS</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-children">
             {releasedFilms.map((film, index) => (
               <FilmCard key={index} film={film} />
@@ -164,12 +242,136 @@ const Filmography = () => {
         </section>
 
         {/* Upcoming Films */}
-        <section>
-          <h2 className="text-3xl font-bold mb-8">Upcoming Projects</h2>
+        <section className="mb-20">
+          <h2 className="text-3xl font-bold mb-8">UPCOMING PROJECTS</h2>
           <div className="grid md:grid-cols-2 gap-8 stagger-children">
             {upcomingFilms.map((film, index) => (
               <FilmCard key={index} film={film} />
             ))}
+          </div>
+        </section>
+
+        {/* International Awards */}
+        <section className="mb-20">
+          <h2 className="text-3xl font-bold mb-12 text-center">International Recognition</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="bg-gradient-card border-0 hover-lift">
+              <CardContent className="p-8">
+                <Award className="h-8 w-8 text-primary mb-4" />
+                <h3 className="text-xl font-bold mb-2">Film Festival Awards</h3>
+                <ul className="space-y-2 text-muted-foreground text-sm">
+                  <li>✓ Sundance Film Festival - Best Actress</li>
+                  <li>✓ Berlin International Film Festival - Award Winner</li>
+                  <li>✓ IIFA Best Actress Award (Multiple nominations)</li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="bg-gradient-card border-0 hover-lift">
+              <CardContent className="p-8">
+                <Star className="h-8 w-8 text-primary mb-4" />
+                <h3 className="text-xl font-bold mb-2">Industry Recognition</h3>
+                <ul className="space-y-2 text-muted-foreground text-sm">
+                  <li>✓ Filmfare Best Actress Awards</li>
+                  <li>✓ National Film Award Winner</li>
+                  <li>✓ Many prestigious nominations</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* Casting Inquiry Section */}
+        <section className="py-16">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">
+              CASTING INQUIRIES
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Interested in casting SUNIT MORARJEE for your next film project? Get in touch with our team!
+            </p>
+          </div>
+
+          <div className="max-w-2xl mx-auto">
+            <Card className="bg-gradient-card border-0 shadow-dramatic">
+              <CardHeader>
+                <CardTitle className="text-2xl font-bold">Casting or Collaboration Inquiry</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium mb-2">
+                        Your Name
+                      </label>
+                      <Input
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        className="bg-background/50 border-border focus:border-primary"
+                        placeholder="Full name"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium mb-2">
+                        Email Address
+                      </label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className="bg-background/50 border-border focus:border-primary"
+                        placeholder="your.email@example.com"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="subject" className="block text-sm font-medium mb-2">
+                      Project Type / Subject
+                    </label>
+                    <Input
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      required
+                      className="bg-background/50 border-border focus:border-primary"
+                      placeholder="Film, Web Series, Commercial, etc."
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium mb-2">
+                      Project Details
+                    </label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      rows={5}
+                      className="bg-background/50 border-border focus:border-primary resize-none"
+                      placeholder="Tell us about your project, character details, timeline, budget..."
+                    />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    className="w-full bg-gradient-golden hover:bg-gradient-golden hover-glow"
+                    size="lg"
+                  >
+                    <Send className="h-5 w-5 mr-2" />
+                    Submit Inquiry
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
           </div>
         </section>
       </div>

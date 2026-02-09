@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Instagram, Twitter, Linkedin } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Instagram, Twitter, Linkedin, Clock, Globe, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -48,7 +48,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'Location',
-      value: 'Los Angeles, CA',
+      value: 'Mumbai India',
       description: 'Available for projects worldwide'
     }
   ];
@@ -215,6 +215,102 @@ const Contact = () => {
             </Card>
           </div>
         </div>
+
+        {/* Response Time & Info Section */}
+        <section className="py-20 bg-background/95 rounded-2xl -mx-6 px-6 mt-20 mb-20">
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="bg-gradient-card border-0 hover-lift text-center">
+              <CardContent className="p-8">
+                <Clock className="h-10 w-10 text-primary mx-auto mb-4" />
+                <h3 className="text-xl font-bold mb-2">Response Time</h3>
+                <p className="text-muted-foreground">
+                  We aim to respond to all inquiries within 48 hours during business days.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gradient-card border-0 hover-lift text-center">
+              <CardContent className="p-8">
+                <Globe className="h-10 w-10 text-primary mx-auto mb-4" />
+                <h3 className="text-xl font-bold mb-2">Worldwide Availability</h3>
+                <p className="text-muted-foreground">
+                  Open to international projects and collaborations across all regions.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gradient-card border-0 hover-lift text-center">
+              <CardContent className="p-8">
+                <MessageSquare className="h-10 w-10 text-primary mx-auto mb-4" />
+                <h3 className="text-xl font-bold mb-2">Multiple Channels</h3>
+                <p className="text-muted-foreground">
+                  Reach out via email, phone, social media, or contact form—we're here to help!
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-16">
+          <h2 className="text-4xl font-bold mb-12 text-center text-gradient">FREQUENTLY ASKED QUESTIONS</h2>
+          
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <Card className="bg-gradient-card border-0 hover-lift">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-bold mb-3">How can I book for a project?</h3>
+                <p className="text-muted-foreground text-sm">
+                  Please submit a detailed project inquiry through our contact form or reach out to our representation team. We review all casting opportunities carefully.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gradient-card border-0 hover-lift">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-bold mb-3">What's your commission structure?</h3>
+                <p className="text-muted-foreground text-sm">
+                  Our agency handles all business negotiations. Please contact our office directly for detailed information about rates and availability.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gradient-card border-0 hover-lift">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-bold mb-3">Can I get high-resolution photos?</h3>
+                <p className="text-muted-foreground text-sm">
+                  Yes! Visit our Gallery page for photo licensing requests, or contact media@sunitmorarjee.com for professional media kits.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gradient-card border-0 hover-lift">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-bold mb-3">How can I collaborate?</h3>
+                <p className="text-muted-foreground text-sm">
+                  We love collaborations! Whether it's brands, charities, or creative projects, please share your ideas through our contact form.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gradient-card border-0 hover-lift">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-bold mb-3">Are interviews available?</h3>
+                <p className="text-muted-foreground text-sm">
+                  Media and interview requests are handled separately. Please specify your publication and details when contacting.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gradient-card border-0 hover-lift">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-bold mb-3">What about fan mail?</h3>
+                <p className="text-muted-foreground text-sm">
+                  We love hearing from fans! Send your messages via mail to our office address or through our social media channels.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
       </div>
     </div>
   );
