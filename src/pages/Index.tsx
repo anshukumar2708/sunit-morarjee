@@ -2,7 +2,7 @@ import { ArrowDown, Play, Star, Award, Film } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
-import heroPortrait from '@/assets/hero-portrait.jpg';
+import heroPortrait from '@/assets/hero-portrait1.jpg';
 import redCarpet from '@/assets/red-carpet.jpg';
 
 const Index = () => {
