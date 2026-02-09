@@ -1206,9 +1206,6 @@ video {
   max-width: -moz-max-content;
   max-width: max-content;
 }
-.max-w-md {
-  max-width: 28rem;
-}
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -2411,10 +2408,6 @@ All colors MUST be HSL. Luxurious, dramatic, and professional.
   color: hsl(var(--primary-foreground));
 }
 
-.hover\:text-primary\/80:hover {
-  color: hsl(var(--primary) / 0.8);
-}
-
 .hover\:underline:hover {
   text-decoration-line: underline;
 }
@@ -3410,10 +3403,6 @@ All colors MUST be HSL. Luxurious, dramatic, and professional.
 }
 
 @media (min-width: 1024px) {
-
-  .lg\:max-w-none {
-    max-width: none;
-  }
 
   .lg\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));

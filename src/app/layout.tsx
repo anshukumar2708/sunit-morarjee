@@ -11,12 +11,12 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: 'ALEXANDRA STERLING SUNIT MORARJEE - Bollywood Actor',
+  title: 'SUNIT MORARJEE - Bollywood Actor',
   description: 'Professional portfolio of Sunit Morarjee - Award-winning Bollywood actor with 15+ years of experience in leading roles across blockbuster films.',
   keywords: ['Bollywood', 'Actor', 'Portfolio', 'Films', 'Entertainment'],
   authors: [{ name: 'Sunit Morarjee' }],
   openGraph: {
-    title: 'ALEXANDRA STERLING SUNIT MORARJEE - Bollywood Actor',
+    title: 'SUNIT MORARJEE - Bollywood Actor',
     description: 'Award-winning Bollywood actor with 15+ years of experience',
     type: 'website',
   },
