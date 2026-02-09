@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import ContactInfoSection from '@/components/ContactInfoSection';
 import behindScenesImage from '@/assets/behind-scenes.jpg';
 
 const About = () => {
@@ -195,98 +196,108 @@ const About = () => {
           </p>
         </section>
 
-        {/* Contact Section for Inquiries */}
-        <section className="py-16">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">
-              Have a Question?
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Interested in collaborations, interviews, or just want to say hello? Feel free to reach out!
-            </p>
-          </div>
+        {/* Contact Section for Inquiries - Now 2 Column Layout */}
+        <section className="py-20 bg-gradient-to-b from-black/50 to-background">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">
+                LET'S CONNECT
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Interested in collaborations? Reach out with your inquiry or message.
+              </p>
+            </div>
 
-          <div className="max-w-2xl mx-auto">
-            <Card className="bg-gradient-card border-0 shadow-dramatic">
-              <CardHeader>
-                <CardTitle className="text-2xl font-bold">Get In Touch</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium mb-2">
-                        Full Name
-                      </label>
-                      <Input
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="bg-background/50 border-border focus:border-primary"
-                        placeholder="Your full name"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium mb-2">
-                        Email Address
-                      </label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="bg-background/50 border-border focus:border-primary"
-                        placeholder="your.email@example.com"
-                      />
-                    </div>
-                  </div>
+            <div className="grid lg:grid-cols-2 gap-12 items-start">
+              {/* Form on Left */}
+              <div>
+                <Card className="bg-gradient-card border-0 shadow-dramatic h-full">
+                  <CardHeader>
+                    <CardTitle className="text-2xl font-bold">Get In Touch</CardTitle>
+                    <p className="text-sm text-muted-foreground mt-2">Send your inquiry or collaboration idea</p>
+                  </CardHeader>
+                  <CardContent>
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      <div className="space-y-2">
+                        <label htmlFor="name" className="block text-sm font-medium">
+                          Full Name
+                        </label>
+                        <Input
+                          id="name"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          required
+                          className="bg-background/50 border-border focus:border-primary"
+                          placeholder="Your full name"
+                        />
+                      </div>
 
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                      Subject
-                    </label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      required
-                      className="bg-background/50 border-border focus:border-primary"
-                      placeholder="What's this about?"
-                    />
-                  </div>
+                      <div className="space-y-2">
+                        <label htmlFor="email" className="block text-sm font-medium">
+                          Email Address
+                        </label>
+                        <Input
+                          id="email"
+                          name="email"
+                          type="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          required
+                          className="bg-background/50 border-border focus:border-primary"
+                          placeholder="your.email@example.com"
+                        />
+                      </div>
 
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium mb-2">
-                      Message
-                    </label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={5}
-                      className="bg-background/50 border-border focus:border-primary resize-none"
-                      placeholder="Tell me about your inquiry..."
-                    />
-                  </div>
+                      <div className="space-y-2">
+                        <label htmlFor="subject" className="block text-sm font-medium">
+                          Subject
+                        </label>
+                        <Input
+                          id="subject"
+                          name="subject"
+                          value={formData.subject}
+                          onChange={handleChange}
+                          required
+                          className="bg-background/50 border-border focus:border-primary"
+                          placeholder="What's this about?"
+                        />
+                      </div>
 
-                  <Button
-                    type="submit"
-                    className="w-full bg-gradient-golden hover:bg-gradient-golden hover-glow"
-                    size="lg"
-                  >
-                    <Send className="h-5 w-5 mr-2" />
-                    Send Message
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+                      <div className="space-y-2">
+                        <label htmlFor="message" className="block text-sm font-medium">
+                          Message
+                        </label>
+                        <Textarea
+                          id="message"
+                          name="message"
+                          value={formData.message}
+                          onChange={handleChange}
+                          required
+                          rows={5}
+                          className="bg-background/50 border-border focus:border-primary resize-none"
+                          placeholder="Tell me about your inquiry..."
+                        />
+                      </div>
+
+                      <Button
+                        type="submit"
+                        className="w-full bg-gradient-golden hover:bg-gradient-golden hover-glow text-lg py-6"
+                        size="lg"
+                      >
+                        <Send className="h-5 w-5 mr-2" />
+                        Send Message
+                      </Button>
+                    </form>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Contact Info on Right */}
+              <div>
+                <ContactInfoSection />
+              </div>
+            </div>
           </div>
         </section>
       </div>

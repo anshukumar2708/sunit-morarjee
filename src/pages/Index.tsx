@@ -6,6 +6,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Link } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 import { useState } from 'react';
+import ContactForm from '@/components/ContactForm';
+import ContactInfoSection from '@/components/ContactInfoSection';
 import heroPortrait from '@/assets/hero-portrait1.jpg';
 import redCarpet from '@/assets/red-carpet.jpg';
 
@@ -480,107 +482,26 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Quick Contact Form Section */}
-      <section className="py-20 bg-gradient-to-b from-background to-black">
+      {/* Contact & Inquiry Section */}
+      <section className="py-20 bg-gradient-to-b from-black to-background">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16 stagger-children">
+          <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">
-              INTERESTED IN A COLLABORATION?
+              CONNECT WITH ME
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Let's work together on your next exciting project. Fill out the form below and get in touch!
+              Have a project in mind? Get in touch for collaborations and inquiries.
             </p>
           </div>
 
-          <div className="max-w-3xl mx-auto">
-            <Card className="bg-gradient-card border-0 shadow-dramatic">
-              <CardHeader>
-                <CardTitle className="text-2xl font-bold">Quick Inquiry</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label htmlFor="name" className="block text-sm font-medium">
-                        Full Name
-                      </label>
-                      <Input
-                        id="name"
-                        name="name"
-                        type="text"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        placeholder="Your full name"
-                        className="bg-background/50 border-border focus:border-primary transition-colors"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="email" className="block text-sm font-medium">
-                        Email Address
-                      </label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        placeholder="your.email@example.com"
-                        className="bg-background/50 border-border focus:border-primary transition-colors"
-                      />
-                    </div>
-                  </div>
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Form on Left */}
+             <ContactForm/>
 
-                  <div className="space-y-2">
-                    <label htmlFor="subject" className="block text-sm font-medium">
-                      Project Type / Subject
-                    </label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      type="text"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      required
-                      placeholder="Film, Web Series, Commercial, Event, etc."
-                      className="bg-background/50 border-border focus:border-primary transition-colors"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="block text-sm font-medium">
-                      Project Details
-                    </label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={5}
-                      placeholder="Tell me about your project, requirements, and timeline..."
-                      className="bg-background/50 border-border focus:border-primary transition-colors resize-none"
-                    />
-                  </div>
-
-                  <Button
-                    type="submit"
-                    className="w-full bg-gradient-golden hover:bg-gradient-golden hover-glow text-lg py-6"
-                    size="lg"
-                  >
-                    <Send className="h-5 w-5 mr-2" />
-                    Send Inquiry
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-          </div>
-
-          <div className="text-center mt-12">
-            <p className="text-muted-foreground">
-              Or visit the <Link to="/contact" className="text-primary hover:text-primary/80 font-semibold">Contact page</Link> for more options
-            </p>
+            {/* Contact Info on Right */}
+            <div>
+              <ContactInfoSection />
+            </div>
           </div>
         </div>
       </section>

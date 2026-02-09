@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { X, Heart, Share, Download, Send, Camera } from 'lucide-react';
+import { X, Heart, Share, Download, Send, Image, Camera } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import ContactInfoSection from '@/components/ContactInfoSection';
 import heroPortrait from '@/assets/hero-portrait.jpg';
 import portraitGallery1 from '@/assets/portrait-gallery-1.jpg';
 import portraitGallery2 from '@/assets/portrait-gallery-2.jpg';
@@ -251,100 +252,110 @@ const Gallery = () => {
           </div>
         </section>
 
-        {/* Media Inquiry Form */}
-        <section className="py-16">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">
-              MEDIA & PHOTO INQUIRIES
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Need photos for press releases, articles, or promotional material? Contact us for licensing and high-resolution image requests.
-            </p>
-          </div>
+        {/* Media Inquiry Form - 2 Column Layout */}
+        <section className="py-20 bg-gradient-to-b from-background to-black/50">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">
+                MEDIA & PHOTO INQUIRIES
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Need photos for press releases, articles, or promotional material? Submit your licensing request below.
+              </p>
+            </div>
 
-          <div className="max-w-2xl mx-auto">
-            <Card className="bg-gradient-card border-0 shadow-dramatic">
-              <CardHeader>
-                <CardTitle className="text-2xl font-bold">Photo License Request</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label htmlFor="name" className="block text-sm font-medium">
-                        Your Name
-                      </label>
-                      <Input
-                        id="name"
-                        name="name"
-                        type="text"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="bg-background/50 border-border focus:border-primary transition-colors"
-                        placeholder="Full name"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="email" className="block text-sm font-medium">
-                        Email Address
-                      </label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="bg-background/50 border-border focus:border-primary transition-colors"
-                        placeholder="your.email@example.com"
-                      />
-                    </div>
-                  </div>
+            <div className="grid lg:grid-cols-2 gap-12 items-start">
+              {/* Form on Left */}
+              <div>
+                <Card className="bg-gradient-card border-0 shadow-dramatic h-full">
+                  <CardHeader>
+                    <CardTitle className="text-2xl font-bold">Photo License Request</CardTitle>
+                    <p className="text-sm text-muted-foreground mt-2">Request high-resolution photos</p>
+                  </CardHeader>
+                  <CardContent>
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      <div className="space-y-2">
+                        <label htmlFor="name" className="block text-sm font-medium">
+                          Your Name
+                        </label>
+                        <Input
+                          id="name"
+                          name="name"
+                          type="text"
+                          value={formData.name}
+                          onChange={handleChange}
+                          required
+                          className="bg-background/50 border-border focus:border-primary transition-colors"
+                          placeholder="Full name"
+                        />
+                      </div>
 
-                  <div className="space-y-2">
-                    <label htmlFor="subject" className="block text-sm font-medium">
-                      Purpose of Request
-                    </label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      type="text"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      required
-                      className="bg-background/50 border-border focus:border-primary transition-colors"
-                      placeholder="Press, Commercial, Educational, etc."
-                    />
-                  </div>
+                      <div className="space-y-2">
+                        <label htmlFor="email" className="block text-sm font-medium">
+                          Email Address
+                        </label>
+                        <Input
+                          id="email"
+                          name="email"
+                          type="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          required
+                          className="bg-background/50 border-border focus:border-primary transition-colors"
+                          placeholder="your.email@example.com"
+                        />
+                      </div>
 
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="block text-sm font-medium">
-                      Details
-                    </label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={5}
-                      className="bg-background/50 border-border focus:border-primary transition-colors resize-none"
-                      placeholder="Which photos are you interested in? How will they be used? Any specific resolution or format needed?"
-                    />
-                  </div>
+                      <div className="space-y-2">
+                        <label htmlFor="subject" className="block text-sm font-medium">
+                          Purpose of Request
+                        </label>
+                        <Input
+                          id="subject"
+                          name="subject"
+                          type="text"
+                          value={formData.subject}
+                          onChange={handleChange}
+                          required
+                          className="bg-background/50 border-border focus:border-primary transition-colors"
+                          placeholder="Press, Commercial, Educational, etc."
+                        />
+                      </div>
 
-                  <Button
-                    type="submit"
-                    className="w-full bg-gradient-golden hover:bg-gradient-golden hover-glow text-lg py-6"
-                    size="lg"
-                  >
-                    <Send className="h-5 w-5 mr-2" />
-                    Submit Request
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+                      <div className="space-y-2">
+                        <label htmlFor="message" className="block text-sm font-medium">
+                          Details
+                        </label>
+                        <Textarea
+                          id="message"
+                          name="message"
+                          value={formData.message}
+                          onChange={handleChange}
+                          required
+                          rows={5}
+                          className="bg-background/50 border-border focus:border-primary transition-colors resize-none"
+                          placeholder="Which photos are you interested in? How will they be used? Any specific resolution or format needed?"
+                        />
+                      </div>
+
+                      <Button
+                        type="submit"
+                        className="w-full bg-gradient-golden hover:bg-gradient-golden hover-glow text-lg py-6"
+                        size="lg"
+                      >
+                        <Send className="h-5 w-5 mr-2" />
+                        Submit Request
+                      </Button>
+                    </form>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Contact Info on Right */}
+              <div>
+                <ContactInfoSection />
+              </div>
+            </div>
           </div>
         </section>
       </div>
