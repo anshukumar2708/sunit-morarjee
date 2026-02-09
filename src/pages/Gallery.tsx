@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { X, Heart, Share, Download, Send, Photo, Camera } from 'lucide-react';
+import { X, Heart, Share, Download, Send, Camera } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -14,8 +14,13 @@ import behindScenes from '@/assets/behind-scenes.jpg';
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
-  const [activeCategory, setActiveCategory] = useState('all');
-  const [formData, setFormData] = useState({
+  const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [formData, setFormData] = useState<{
+    name: string;
+    email: string;
+    subject: string;
+    message: string;
+  }>({
     name: '',
     email: '',
     subject: '',
@@ -23,7 +28,7 @@ const Gallery = () => {
   });
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     toast({
       title: "Message sent successfully!",
@@ -32,11 +37,12 @@ const Gallery = () => {
     setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
   };
 
   const images = [
@@ -223,7 +229,6 @@ const Gallery = () => {
                   <span>Professional Studio Photography</span>
                 </li>
                 <li className="flex items-center gap-3">
-                  <Photo className="h-5 w-5 text-primary" />
                   <span>On-Set Behind the Scenes</span>
                 </li>
                 <li className="flex items-center gap-3">
@@ -265,22 +270,23 @@ const Gallery = () => {
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium mb-2">
+                    <div className="space-y-2">
+                      <label htmlFor="name" className="block text-sm font-medium">
                         Your Name
                       </label>
                       <Input
                         id="name"
                         name="name"
+                        type="text"
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="bg-background/50 border-border focus:border-primary"
+                        className="bg-background/50 border-border focus:border-primary transition-colors"
                         placeholder="Full name"
                       />
                     </div>
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium mb-2">
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="block text-sm font-medium">
                         Email Address
                       </label>
                       <Input
@@ -290,29 +296,30 @@ const Gallery = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="bg-background/50 border-border focus:border-primary"
+                        className="bg-background/50 border-border focus:border-primary transition-colors"
                         placeholder="your.email@example.com"
                       />
                     </div>
                   </div>
 
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-medium mb-2">
+                  <div className="space-y-2">
+                    <label htmlFor="subject" className="block text-sm font-medium">
                       Purpose of Request
                     </label>
                     <Input
                       id="subject"
                       name="subject"
+                      type="text"
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="bg-background/50 border-border focus:border-primary"
+                      className="bg-background/50 border-border focus:border-primary transition-colors"
                       placeholder="Press, Commercial, Educational, etc."
                     />
                   </div>
 
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium mb-2">
+                  <div className="space-y-2">
+                    <label htmlFor="message" className="block text-sm font-medium">
                       Details
                     </label>
                     <Textarea
@@ -322,14 +329,14 @@ const Gallery = () => {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="bg-background/50 border-border focus:border-primary resize-none"
+                      className="bg-background/50 border-border focus:border-primary transition-colors resize-none"
                       placeholder="Which photos are you interested in? How will they be used? Any specific resolution or format needed?"
                     />
                   </div>
 
                   <Button
                     type="submit"
-                    className="w-full bg-gradient-golden hover:bg-gradient-golden hover-glow"
+                    className="w-full bg-gradient-golden hover:bg-gradient-golden hover-glow text-lg py-6"
                     size="lg"
                   >
                     <Send className="h-5 w-5 mr-2" />

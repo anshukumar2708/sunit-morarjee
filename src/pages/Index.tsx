@@ -1,11 +1,45 @@
-import { ArrowDown, Play, Star, Award, Film, Sparkles, Heart, Users, Trophy, TrendingUp } from 'lucide-react';
+import { ArrowDown, Play, Star, Award, Film, Sparkles, Heart, Users, Trophy, TrendingUp, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { Link } from 'react-router-dom';
+import { useToast } from '@/hooks/use-toast';
+import { useState } from 'react';
 import heroPortrait from '@/assets/hero-portrait1.jpg';
 import redCarpet from '@/assets/red-carpet.jpg';
 
 const Index = () => {
+  const [formData, setFormData] = useState<{
+    name: string;
+    email: string;
+    subject: string;
+    message: string;
+  }>({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const { toast } = useToast();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    toast({
+      title: "Message sent successfully!",
+      description: "Thank you for reaching out. I'll get back to you soon.",
+    });
+    setFormData({ name: '', email: '', subject: '', message: '' });
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
   const stats = [
     { icon: Film, number: '25+', label: 'Films' },
     { icon: Award, number: '12', label: 'Awards' },
@@ -442,6 +476,111 @@ const Index = () => {
                 View Complete Gallery
               </Link>
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Contact Form Section */}
+      <section className="py-20 bg-gradient-to-b from-background to-black">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16 stagger-children">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">
+              INTERESTED IN A COLLABORATION?
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Let's work together on your next exciting project. Fill out the form below and get in touch!
+            </p>
+          </div>
+
+          <div className="max-w-3xl mx-auto">
+            <Card className="bg-gradient-card border-0 shadow-dramatic">
+              <CardHeader>
+                <CardTitle className="text-2xl font-bold">Quick Inquiry</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label htmlFor="name" className="block text-sm font-medium">
+                        Full Name
+                      </label>
+                      <Input
+                        id="name"
+                        name="name"
+                        type="text"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        placeholder="Your full name"
+                        className="bg-background/50 border-border focus:border-primary transition-colors"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="block text-sm font-medium">
+                        Email Address
+                      </label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        placeholder="your.email@example.com"
+                        className="bg-background/50 border-border focus:border-primary transition-colors"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label htmlFor="subject" className="block text-sm font-medium">
+                      Project Type / Subject
+                    </label>
+                    <Input
+                      id="subject"
+                      name="subject"
+                      type="text"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      required
+                      placeholder="Film, Web Series, Commercial, Event, etc."
+                      className="bg-background/50 border-border focus:border-primary transition-colors"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <label htmlFor="message" className="block text-sm font-medium">
+                      Project Details
+                    </label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      rows={5}
+                      placeholder="Tell me about your project, requirements, and timeline..."
+                      className="bg-background/50 border-border focus:border-primary transition-colors resize-none"
+                    />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    className="w-full bg-gradient-golden hover:bg-gradient-golden hover-glow text-lg py-6"
+                    size="lg"
+                  >
+                    <Send className="h-5 w-5 mr-2" />
+                    Send Inquiry
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="text-center mt-12">
+            <p className="text-muted-foreground">
+              Or visit the <Link to="/contact" className="text-primary hover:text-primary/80 font-semibold">Contact page</Link> for more options
+            </p>
           </div>
         </div>
       </section>
