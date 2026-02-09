@@ -21,7 +21,7 @@ const Index = () => {
     },
     {
       title: 'Echoes of Tomorrow',
-      year: '2022', 
+      year: '2022',
       role: 'Supporting Role',
       description: 'BAFTA winning performance'
     }
@@ -35,7 +35,7 @@ const Index = () => {
         <div className="absolute inset-0 z-0">
           <img
             src={heroPortrait}
-            alt="Alexandra"
+            alt="SUNIT MORARJEE"
             className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
@@ -45,14 +45,14 @@ const Index = () => {
         <div className="relative z-10 container mx-auto px-6 text-center lg:text-left">
           <div className="max-w-3xl cinematic-enter">
             <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight">
-              <span className="text-white">ALEXANDRA</span>
+              <span className="text-white">SUNIT</span>
               <br />
-              <span className="text-gradient animate-float">STERLING</span>
+              <span className="text-gradient animate-float">MORARJEE</span>
             </h1>
             <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
               Award-winning actress bringing authentic stories to life through the power of cinema.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
               <Button
                 size="lg"
@@ -146,7 +146,7 @@ const Index = () => {
           />
           <div className="absolute inset-0 bg-black/70" />
         </div>
-        
+
         <div className="relative z-10 container mx-auto px-6 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
             Let's Create Something

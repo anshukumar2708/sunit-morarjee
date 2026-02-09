@@ -22,7 +22,7 @@ const About = () => {
         {/* Hero Section */}
         <div className="text-center mb-16 cinematic-enter">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 text-gradient">
-            About Alexandra
+            About Sunit Morarjee
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             A passionate performer dedicated to bringing authentic stories to life through the art of cinema.
@@ -35,16 +35,16 @@ const About = () => {
           <div className="space-y-6 stagger-children">
             <h2 className="text-3xl font-bold mb-6">My Journey</h2>
             <p className="text-lg leading-relaxed text-muted-foreground">
-              Born and raised in Los Angeles, I discovered my passion for acting during high school theater productions. 
+              Born and raised in Los Angeles, I discovered my passion for acting during high school theater productions.
               After graduating from the prestigious Juilliard School, I began my career on Broadway before transitioning to film.
             </p>
             <p className="text-lg leading-relaxed text-muted-foreground">
-              My breakthrough role came in the indie drama "Whispers in the Rain," which premiered at Sundance and earned me 
-              critical acclaim. Since then, I've had the privilege of working with renowned directors and talented casts across 
+              My breakthrough role came in the indie drama "Whispers in the Rain," which premiered at Sundance and earned me
+              critical acclaim. Since then, I've had the privilege of working with renowned directors and talented casts across
               various genres, from intimate character studies to epic blockbusters.
             </p>
             <p className="text-lg leading-relaxed text-muted-foreground">
-              When I'm not on set, I'm passionate about mentoring young actors and supporting arts education in underserved communities. 
+              When I'm not on set, I'm passionate about mentoring young actors and supporting arts education in underserved communities.
               I believe in the transformative power of storytelling and its ability to create empathy and understanding across cultures.
             </p>
           </div>

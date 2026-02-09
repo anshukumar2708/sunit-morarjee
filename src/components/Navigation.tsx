@@ -25,15 +25,14 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-background/95 backdrop-blur-md shadow-dramatic' : 'bg-transparent'
-    }`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-background/95 backdrop-blur-md shadow-dramatic' : 'bg-transparent'
+      }`}>
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 hover-glow">
             <Star className="h-8 w-8 text-primary" />
-            <span className="text-2xl font-bold text-gradient">ALEXANDRA</span>
+            <span className="text-2xl font-bold text-gradient">SUNIT</span>
           </Link>
 
           {/* Desktop Menu */}
@@ -42,9 +41,8 @@ const Navigation = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`relative text-lg font-medium transition-colors duration-300 hover:text-primary ${
-                  location.pathname === item.path ? 'text-primary' : 'text-foreground'
-                }`}
+                className={`relative text-lg font-medium transition-colors duration-300 hover:text-primary ${location.pathname === item.path ? 'text-primary' : 'text-foreground'
+                  }`}
               >
                 {item.name}
                 {location.pathname === item.path && (
@@ -73,9 +71,8 @@ const Navigation = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`text-lg font-medium transition-colors duration-300 hover:text-primary ${
-                    location.pathname === item.path ? 'text-primary' : 'text-foreground'
-                  }`}
+                  className={`text-lg font-medium transition-colors duration-300 hover:text-primary ${location.pathname === item.path ? 'text-primary' : 'text-foreground'
+                    }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}

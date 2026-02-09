@@ -36,7 +36,7 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'Email',
-      value: 'hello@alexandra.com',
+      value: 'hello@sunitmorarjee.com',
       description: 'For general inquiries and collaborations'
     },
     {
@@ -54,9 +54,9 @@ const Contact = () => {
   ];
 
   const socialLinks = [
-    { icon: Instagram, name: 'Instagram', url: '#', handle: '@alexandra' },
-    { icon: Twitter, name: 'Twitter', url: '#', handle: '@alexandra' },
-    { icon: Linkedin, name: 'LinkedIn', url: '#', handle: 'Alexandra' }
+    { icon: Instagram, name: 'Instagram', url: '#', handle: '@sunitmorarjee' },
+    { icon: Twitter, name: 'Twitter', url: '#', handle: '@sunit morarjee' },
+    { icon: Linkedin, name: 'LinkedIn', url: '#', handle: 'SUNIT MORARJEE' }
   ];
 
   return (
@@ -112,7 +112,7 @@ const Contact = () => {
                       />
                     </div>
                   </div>
-                  
+
                   <div>
                     <label htmlFor="subject" className="block text-sm font-medium mb-2">
                       Subject
@@ -127,7 +127,7 @@ const Contact = () => {
                       placeholder="What's this about?"
                     />
                   </div>
-                  
+
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium mb-2">
                       Message
@@ -143,7 +143,7 @@ const Contact = () => {
                       placeholder="Tell me about your project or inquiry..."
                     />
                   </div>
-                  
+
                   <Button
                     type="submit"
                     className="w-full bg-gradient-golden hover:bg-gradient-golden hover-glow"
