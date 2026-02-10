@@ -43,18 +43,24 @@ const FilmCard: React.FC<FilmCardProps> = ({
                     aria-label={`Play video for ${title}`}
                 >
                     <div className="relative flex items-center justify-center">
-                        {/* Outer Circle Background */}
-                        <div className="absolute inset-0 rounded-full bg-primary/20 group-hover:bg-primary/40 transition-all duration-300 scale-100 group-hover:scale-110" />
+                        {/* Outer Glow */}
+                        <div className="absolute inset-0 rounded-full bg-primary opacity-70 blur-md scale-110 group-hover:scale-125 transition-all duration-300" />
 
-                        {/* Middle Circle */}
-                        <div className="absolute inset-2 rounded-full border-2 border-white/80 group-hover:border-white transition-all duration-300 scale-100 group-hover:scale-110" />
+                        {/* Main Circle */}
+                        <div className="relative w-14 h-14 rounded-full bg-primary flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 pr-1">
 
-                        {/* Play Icon */}
-                        <Play className="h-10 w-10 sm:h-12 sm:w-12 text-white fill-white group-hover:scale-125 transition-transform duration-300 relative z-10" />
+                            {/* Play Icon */}
+                            <svg
+                                viewBox="0 0 24 24"
+                                className="w-10 h-10 ml-1 fill-black group-hover:scale-110 transition-transform duration-300"
+                            >
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+
+                        </div>
                     </div>
                 </button>
 
-                {/* Year Badge */}
                 <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs sm:text-sm font-semibold">
                     {year}
                 </div>
