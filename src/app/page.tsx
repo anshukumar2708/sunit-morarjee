@@ -5,13 +5,25 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState, useCallback } from 'react';
 import Navigation from '@/components/Navigation';
 import heroPortrait from '@/assets/sunit-morarjee.jpg';
 import redCarpet from '@/assets/red-carpet.jpg';
 import ContactForm from '@/components/ContactForm';
 import ContactInfoSection from '@/components/ContactInfoSection';
+import VideoModal from '@/components/VideoModal';
+import FilmCard from '@/components/FilmCard';
 
 const HomePage = () => {
+  const [selectedVideo, setSelectedVideo] = useState<{ title: string; videoUrl: string } | null>(null);
+
+  const handlePlayClick = useCallback((title: string, videoUrl: string) => {
+    setSelectedVideo({ title, videoUrl });
+  }, []);
+
+  const closeModal = useCallback(() => {
+    setSelectedVideo(null);
+  }, []);
 
   const stats = [
     { icon: Film, number: '25+', label: 'Films' },
@@ -82,30 +94,51 @@ const HomePage = () => {
 
   const filmHighlights = [
     {
+      id: 1,
       title: 'Midnight Dreams',
       year: '2023',
       genre: 'Drama',
-      description: 'A compelling narrative about ambition and sacrifice'
+      description: 'A compelling narrative about ambition and sacrifice',
+      thumbnail:
+        'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&w=500&q=60',
+      videoUrl:
+        'https://www.youtube.com/watch?v=FZnZMAL1K7Q',
     },
     {
+      id: 2,
       title: 'Echoes of Tomorrow',
       year: '2022',
       genre: 'Thriller',
-      description: 'Suspenseful journey through unexpected twists'
+      description: 'Suspenseful journey through unexpected twists',
+      thumbnail:
+        'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=500&q=60',
+      videoUrl:
+        'https://www.youtube.com/watch?v=YgPIqgkt45M',
     },
     {
+      id: 3,
       title: 'Bollywood Dream',
       year: '2021',
       genre: 'Romance',
-      description: 'A love story that transcends all boundaries'
+      description: 'A love story that transcends all boundaries',
+      thumbnail:
+        'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=500&q=60',
+      videoUrl:
+        'https://www.youtube.com/watch?v=Elftr3UOJq4',
     },
     {
+      id: 4,
       title: 'Silver Screen',
       year: '2020',
       genre: 'Drama',
-      description: 'Powerful portrayal of resilience and determination'
-    }
+      description: 'Powerful portrayal of resilience and determination',
+      thumbnail:
+        'https://images.unsplash.com/photo-1517602302552-471fe67acf66?auto=format&fit=crop&w=500&q=60',
+      videoUrl:
+        'https://www.youtube.com/watch?v=VExJ3swr0Q8&t=383s',
+    },
   ];
+
 
   const stats_section = [
     { value: '25+', label: 'Blockbuster Films' },
@@ -326,23 +359,28 @@ const HomePage = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children">
             {filmHighlights.map((film, index) => (
-              <Card key={index} className="bg-gradient-card border-0 hover-lift group cursor-pointer overflow-hidden">
-                <div className="h-40 bg-gradient-purple relative flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <Play className="h-12 w-12 text-white/60 group-hover:text-white group-hover:scale-125 transition-all" />
-                </div>
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-lg font-bold group-hover:text-primary transition-colors">{film.title}</h3>
-                    <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full">{film.year}</span>
-                  </div>
-                  <p className="text-sm text-primary mb-2">{film.genre}</p>
-                  <p className="text-sm text-muted-foreground">{film.description}</p>
-                </CardContent>
-              </Card>
+              <FilmCard
+                key={index}
+                title={film.title}
+                year={film.year}
+                genre={film.genre}
+                description={film.description}
+                thumbnail={film.thumbnail}
+                videoUrl={film.videoUrl}
+                onPlayClick={() => handlePlayClick(film.title, film.videoUrl)}
+              />
             ))}
           </div>
         </div>
       </section>
+
+      {/* Video Modal */}
+      <VideoModal
+        isOpen={selectedVideo !== null}
+        videoUrl={selectedVideo?.videoUrl || ''}
+        title={selectedVideo?.title || ''}
+        onClose={closeModal}
+      />
 
       {/* Testimonials Section */}
       <section className="py-20 bg-gradient-to-b from-black to-background">
