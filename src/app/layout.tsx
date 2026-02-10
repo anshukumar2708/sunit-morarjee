@@ -20,6 +20,10 @@ export const metadata: Metadata = {
     description: 'Award-winning Bollywood actor with 15+ years of experience',
     type: 'website',
   },
+  icons: {
+    icon: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
 }
 
 export default function RootLayout({
@@ -31,6 +35,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta name="theme-color" content="hsl(220 15% 8%)" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="alternate icon" href="/favicon.svg" />
       </head>
       <body className={inter.className}>
         {children}
