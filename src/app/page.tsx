@@ -1,16 +1,12 @@
 'use client';
 
-import { ArrowDown, Play, Star, Award, Film, Sparkles, Heart, Users, Trophy, TrendingUp, Send } from 'lucide-react';
+import { ArrowDown, Play, Star, Award, Film, Sparkles, Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useToast } from '@/hooks/use-toast';
-import { useState } from 'react';
 import Navigation from '@/components/Navigation';
-import heroPortrait from '@/assets/hero-portrait1.jpg';
+import heroPortrait from '@/assets/sunit-morarjee.jpg';
 import redCarpet from '@/assets/red-carpet.jpg';
 import ContactForm from '@/components/ContactForm';
 import ContactInfoSection from '@/components/ContactInfoSection';
@@ -28,15 +24,16 @@ const HomePage = () => {
       title: 'Midnight Dreams',
       year: '2023',
       role: 'Lead Role',
-      description: 'Academy Award nominated performance'
+      description: 'Academy Award nominated performance',
     },
     {
       title: 'Echoes of Tomorrow',
       year: '2022',
       role: 'Supporting Role',
-      description: 'BAFTA winning performance'
-    }
+      description: 'BAFTA winning performance',
+    },
   ];
+
 
   const awards = [
     {
@@ -151,7 +148,7 @@ const HomePage = () => {
               <span className="text-gradient animate-float">SUNIT MORARJEE</span>
             </h1>
             <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
-              Award-winning actress bringing authentic stories to life through the power of cinema.
+              Award-winning actor bringing authentic stories to life through the power of cinema.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -193,29 +190,48 @@ const HomePage = () => {
       </section>
 
       {/* Recent Work Section */}
-      <section className="py-20 bg-background/95">
-        <div className="container mx-auto px-6">
+      <section
+        className="relative py-20 bg-cover bg-center bg-no-repeat bg-fixed"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=1600&q=80')",
+        }}
+      >
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+
+        <div className="relative container mx-auto px-6">
           <div className="text-center mb-16 stagger-children">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">
               Recent Acclaimed Work
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl max-w-2xl mx-auto text-white/80">
               Pushing the boundaries of storytelling through powerful performances
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12 stagger-children">
             {recentWork.map((work, index) => (
-              <Card key={index} className="bg-gradient-card border-0 hover-lift overflow-hidden">
-                <div className="h-48 bg-gradient-purple relative">
+              <Card
+                key={index}
+                className="bg-white/10 backdrop-blur-lg border-0 hover-lift overflow-hidden"
+              >
+                <div
+                  className="h-48 bg-gradient-purple relative"
+                >
                   <div className="absolute inset-0 bg-black/20" />
                   <div className="absolute bottom-4 left-4">
-                    <h3 className="text-2xl font-bold text-white mb-1">{work.title}</h3>
-                    <p className="text-white/80">{work.year} • {work.role}</p>
+                    <h3 className="text-2xl font-bold text-white mb-1">
+                      {work.title}
+                    </h3>
+                    <p className="text-white/80">
+                      {work.year} • {work.role}
+                    </p>
                   </div>
                 </div>
+
                 <CardContent className="p-6">
-                  <p className="text-muted-foreground">{work.description}</p>
+                  <p className="text-white/70">{work.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -226,13 +242,12 @@ const HomePage = () => {
               size="lg"
               className="bg-gradient-purple hover:bg-gradient-purple hover-glow"
             >
-              <Link href="/filmography">
-                View Complete Filmography
-              </Link>
+              <Link href="/filmography">View Complete Filmography</Link>
             </Button>
           </div>
         </div>
       </section>
+
 
       {/* Call to Action */}
       <section className="relative py-20 overflow-hidden">
@@ -436,25 +451,25 @@ const HomePage = () => {
             </p>
           </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-              {/* Form on Left */}
-              <div>
-                <Card className="bg-gradient-card border-0 shadow-dramatic h-full">
-                  <CardHeader>
-                    <CardTitle className="text-2xl font-bold">Get In Touch</CardTitle>
-                    <p className="text-sm text-muted-foreground mt-2">Send your inquiry or collaboration idea</p>
-                  </CardHeader>
-                  <CardContent>
-                    <ContactForm/>
-                  </CardContent>
-                </Card>
-              </div>
-
-              {/* Contact Info on Right */}
-              <div>
-                <ContactInfoSection />
-              </div>
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Form on Left */}
+            <div>
+              <Card className="bg-gradient-card border-0 shadow-dramatic h-full">
+                <CardHeader>
+                  <CardTitle className="text-2xl font-bold">Get In Touch</CardTitle>
+                  <p className="text-sm text-muted-foreground mt-2">Send your inquiry or collaboration idea</p>
+                </CardHeader>
+                <CardContent>
+                  <ContactForm />
+                </CardContent>
+              </Card>
             </div>
+
+            {/* Contact Info on Right */}
+            <div>
+              <ContactInfoSection />
+            </div>
+          </div>
         </div>
       </section>
 
